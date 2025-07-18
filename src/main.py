@@ -8,5 +8,8 @@ def main():
     html_node_test = HTMLNode("<img>", props={"src":"img_girl.jpg", "alt":"Girl in a jacket", "width":"500", "height":"600"})
     print(html_node_test)
 
+    node = LeafNode("a", "Click me!", {"href": "https://www.google.com"})
+    print(node.to_html())
+
 
 main()
