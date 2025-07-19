@@ -1,15 +1,26 @@
 from textnode import *
 from htmlnode import *
 
+
+
 def main():
-    text_node_test =TextNode("Test", TextType.LINK, "https://www.boot.dev")
-    print(text_node_test)
+    pass
 
-    html_node_test = HTMLNode("<img>", props={"src":"img_girl.jpg", "alt":"Girl in a jacket", "width":"500", "height":"600"})
-    print(html_node_test)
-
-    node = LeafNode("a", "Click me!", {"href": "https://www.google.com"})
-    print(node.to_html())
+def text_node_to_html_node(text_node):
+        if text_node.text_type == TextType.TEXT:
+            return LeafNode(None, text_node.text)
+        elif text_node.text_type == TextType.BOLD_TEXT:
+            return LeafNode("b", text_node.text)
+        elif text_node.text_type == TextType.ITALIC_TEXT:
+            return LeafNode("i", text_node.text)
+        elif text_node.text_type == TextType.CODE_TEXT:
+            return LeafNode("code", text_node.text)
+        elif text_node.text_type == TextType.LINK:
+            return LeafNode("a", text_node.text, {"href":text_node.url})
+        elif text_node.text_type == TextType.IMAGE:
+            return LeafNode("img", "", {"src":text_node.url, "alt":text_node.text})
+        else:
+            raise Exception("Incorrect Text Type")
 
 
 main()
