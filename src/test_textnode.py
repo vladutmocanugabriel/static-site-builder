@@ -1,7 +1,7 @@
 import unittest
 
 from textnode import *
-from main import text_node_to_html_node
+from converters import text_node_to_html_node
 
 
 class TestTextNode(unittest.TestCase):
@@ -13,7 +13,7 @@ class TestTextNode(unittest.TestCase):
 
     def test_repr_function(self):
         text_node_test =TextNode("Test", TextType.LINK, "https://www.boot.dev")
-        self.assertEqual(text_node_test.__repr__(), "TextNode(Test, [anchor text](url), https://www.boot.dev)" )
+        self.assertEqual(text_node_test.__repr__(), "TextNode(Test, TextType.LINK, https://www.boot.dev)" )
 
     def test_eq_function_true(self):
         node = TextNode("This is a text node", TextType.BOLD_TEXT)
