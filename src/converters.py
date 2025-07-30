@@ -28,7 +28,6 @@ def split_nodes_delimiter(old_nodes, delimiter, text_type):
         elif node.text.count(delimiter) == 0:
             new_nodes.append(node)
         elif node.text.count(delimiter) != 2 and node.text.count(delimiter) != 0:
-            print(node.text.count(delimiter))
             raise Exception("Missing closing delimiter")
         else:
             split = node.text.split(delimiter)
@@ -40,16 +39,17 @@ def split_nodes_delimiter(old_nodes, delimiter, text_type):
 
 
 def extract_markdown_images(text):
-    image_alts = re.findall(r"\[(.*?)\]" , text)
-    image_links = re.findall(r"\((.*?)\)", text)
+    image_alts = re.findall(r"!\[([^\[\]]*)\]" , text)
+    image_links = re.findall(r"\(([^\(\)]*)\)", text)
     extracted_images = []
     for alt,link in zip(image_alts,image_links):
         extracted_images.append((alt, link))
     return extracted_images
 
 def extract_markdown_links(text):
-    link_texts = re.findall(r"\[(.*?)\]" , text)
-    link_hrefs = re.findall(r"\((.*?)\)", text)
+    link_texts = re.findall(r"\[([^\[\]]*)\]" , text)
+                            
+    link_hrefs = re.findall(r"\(([^\(\)]*)\)", text)
     extracted_links = []
     for link_text,href in zip(link_texts,link_hrefs):
         extracted_links.append((link_text, href))
